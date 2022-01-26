@@ -122,7 +122,6 @@ document.getElementById("atencionesDt").innerHTML = `Primera atencion: ${dental[
 //Fin Tabla Dental
 //FIN TABLAS
 
-
 /* 3. Imprimir en la página HTML, mediante document.write y/o la funciones que estime
 conveniente, la lista de consultas médicas de Dental. Sin embargo, debe hacerlo
 separando por un guión cada dato desplegado y cada fila de información debe estar
