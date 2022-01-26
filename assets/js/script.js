@@ -119,6 +119,18 @@ document.getElementById("tableBodyDt").innerHTML = filaDental;
 document.getElementById("atencionesDt").innerHTML = `Primera atencion: ${dental[0].paciente} - ${dental[0].prevision} | Última atención: ${dental[dental.length - 1].paciente} - ${dental[dental.length - 1].prevision}</p>`;
 //Fin Tabla Dental
 
+//Inicio lista consultas médicas Dental
+var listaNewDental = "";
+
+for(i = 0 ; i < dental.length ; i++){
+    listaNewDental +=
+        `<ul>
+        <li class='list-unstyled'>${dental[i].hora} - ${dental[i].especialista} - ${dental[i].paciente} - ${dental[i].rut} - ${dental[i].prevision}</li>
+        </ul>`
+}
+document.getElementById("dentalNew").innerHTML = listaNewDental;
+//Fin lista consultas médicas Dental
+
 //Inicio Lista de pacientes atendidos en el centro médico
 var filaPacientes = "";
 
@@ -134,7 +146,7 @@ document.getElementById("paName").innerHTML = filaPacientes;
 
 //Inicio Lista de Pacientes con isapre Dental
 let newDentalArray = dental.filter(pre => {
-    return pre.prevision === 'ISAPRE';
+    return pre.prevision == 'ISAPRE';
 });
 var filaIsapre = "";
 
@@ -149,7 +161,7 @@ document.getElementById("isaprePa").innerHTML = filaIsapre;
 
 //Inicio Lista de Pacientes con fonasa traumatología
 let newTraumaArray = traumatologia.filter(pre => {
-    return pre.prevision === 'FONASA';
+    return pre.prevision == 'FONASA';
 });
 var filaFonasa = "";
 
