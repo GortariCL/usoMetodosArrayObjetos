@@ -1,4 +1,4 @@
-//Declaración Arrays
+//Inicio Declaración Arrays
 let radiologia = [
     { hora: '11:00', especialista: 'IGNACIO SCHULZ', paciente: 'FRANCISCA ROJAS', rut: '9878782-1', prevision: 'FONASA' },
     { hora: '11:30', especialista: 'FEDERICO SUBERCASEAUX', paciente: 'PAMELA ESTRADA', rut: '15234241-3', prevision: 'ISAPRE' },
@@ -25,8 +25,9 @@ let dental = [
     { hora: '13:30', especialista: 'EDUARDO VIÑUELA', paciente: 'HUGO SANCHEZ', rut: '17665461-4', prevision: 'FONASA' },
     { hora: '14:00', especialista: 'RAQUEL VILLASECA', paciente: 'ANA SEPULVEDA', rut: '14441281-0', prevision: 'ISAPRE' },
 ]
+//Fin Declaración Arrays
 
-//Función agregar nuevas horas al array
+//Inicio Función agregar nuevas horas al array traumatología
 let agregaHoras = () => {
     traumatologia.push(
         { hora: '09:00', especialista: 'RENÉ POBLETE', paciente: 'ANA GELLONA', rut: '13123329-7', prevision: 'ISAPRE' },
@@ -47,8 +48,24 @@ let agregaHoras = () => {
     });
 };
 agregaHoras();
+//Fin Función agregar nuevas horas al array traumatología
 
-//Tabla Radiología
+
+//Inicio Elimina primer objeto del array
+const borrarPrimero = () => {
+    radiologia.shift();
+}
+borrarPrimero();
+//Fin Elimina primer objeto del array
+
+//Inicio Elimina último objeto del array
+const borrarUltimo = () => {
+    radiologia.pop();
+}
+borrarUltimo();
+//Fin Elimina último objeto del array
+
+//Inicio Tabla Radiología
 var filaRadiologia = "<tr><th>#</th><th>Hora</th><th>Especialista</th><th>Paciente</th><th>RUT</th><th>Prevision</th></tr>";
 
 for (var i = 0; i < radiologia.length; i++) {
@@ -64,8 +81,9 @@ for (var i = 0; i < radiologia.length; i++) {
 }
 document.getElementById("tableBodyRd").innerHTML = filaRadiologia;
 document.getElementById("atencionesRd").innerHTML = `Primera atencion: ${radiologia[0].paciente} - ${radiologia[0].prevision} | Última atención: ${radiologia[radiologia.length - 1].paciente} - ${radiologia[radiologia.length - 1].prevision}</p>`;
+//Fin Tabla Radiología
 
-//Tabla Traumatología
+//Inicio Tabla Traumatología
 var filaTraumatologia = "<tr><th>#</th><th>Hora</th><th>Especialista</th><th>Paciente</th><th>RUT</th><th>Prevision</th></tr>";
 
 for (var i = 0; i < traumatologia.length; i++) {
@@ -81,8 +99,9 @@ for (var i = 0; i < traumatologia.length; i++) {
 }
 document.getElementById("tableBodyTr").innerHTML = filaTraumatologia;
 document.getElementById("atencionesTr").innerHTML = `Primera atencion: ${traumatologia[0].paciente} - ${traumatologia[0].prevision} | Última atención: ${traumatologia[traumatologia.length - 1].paciente} - ${traumatologia[traumatologia.length - 1].prevision}</p>`;
+//Fin Tabla Traumatología
 
-//Tabla Dental
+//Inicio Tabla Dental
 var filaDental = "<tr><th>#</th><th>Hora</th><th>Especialista</th><th>Paciente</th><th>RUT</th><th>Prevision</th></tr>";
 
 for (var i = 0; i < dental.length; i++) {
@@ -98,25 +117,10 @@ for (var i = 0; i < dental.length; i++) {
 }
 document.getElementById("tableBodyDt").innerHTML = filaDental;
 document.getElementById("atencionesDt").innerHTML = `Primera atencion: ${dental[0].paciente} - ${dental[0].prevision} | Última atención: ${dental[dental.length - 1].paciente} - ${dental[dental.length - 1].prevision}</p>`;
+//Fin Tabla Dental
 
-
-//Elimina primer objeto del array
-const borrarPrimero = () => {
-    radiologia.shift();
-}
-borrarPrimero();
-
-//Elimina último objeto del array
-const borrarUltimo = () => {
-    radiologia.pop();
-}
-borrarUltimo();
-
-
-
-
+//Inicio Lista de pacientes atendidos en el centro médico
 var filaPacientes = "";
-
 
 var listaPacientes = radiologia.concat(traumatologia, dental);
 for (var i = 0; i < listaPacientes.length; i++) {
@@ -126,3 +130,34 @@ for (var i = 0; i < listaPacientes.length; i++) {
         </ul>`;
 }
 document.getElementById("paName").innerHTML = filaPacientes;
+//Fin Lista de pacientes atendidos en el centro médico
+
+//Inicio Lista de Pacientes con isapre Dental
+let newDentalArray = dental.filter(pre => {
+    return pre.prevision === 'ISAPRE';
+});
+var filaIsapre = "";
+
+for (var i = 0; i < newDentalArray.length; i++) {
+    filaIsapre +=
+        `<ul>
+        <li class='list-unstyled'>${newDentalArray[i].paciente} - ${newDentalArray[i].prevision}</li>
+        </ul>`;
+}
+document.getElementById("isaprePa").innerHTML = filaIsapre;
+//Fin Lista de Pacientes con isapre Dental
+
+//Inicio Lista de Pacientes con fonasa traumatología
+let newTraumaArray = traumatologia.filter(pre => {
+    return pre.prevision === 'FONASA';
+});
+var filaFonasa = "";
+
+for (var i = 0; i < newTraumaArray.length; i++) {
+    filaFonasa +=
+        `<ul>
+        <li class='list-unstyled'>${newTraumaArray[i].paciente} - ${newTraumaArray[i].prevision}</li>
+        </ul>`;
+}
+document.getElementById("fonasaPa").innerHTML = filaFonasa;
+//Fin Lista de Pacientes con fonasa traumatología
