@@ -129,7 +129,7 @@ separando por un guión cada dato desplegado y cada fila de información debe es
 separada por un párrafo.
 Inicio lista consultas médicas Dental */
 dental.forEach(function(i){
-    listaNewDental = `<ul><li class='list-unstyled'>${i.hora} - ${i.especialista} - ${i.paciente} - ${i.rut} - ${i.prevision}</li></ul>`;
+    listaNewDental = `<p class='list-unstyled'>${i.hora} - ${i.especialista} - ${i.paciente} - ${i.rut} - ${i.prevision}</p>`;
     document.getElementById("dentalNew").innerHTML += listaNewDental;
 });
 //Fin lista consultas médicas Dental
@@ -141,7 +141,7 @@ Inicio Lista de pacientes atendidos en el centro médico */
 var listaPacientes = radiologia.concat(traumatologia, dental);
 
 listaPacientes.forEach(function(i) {
-    var filaPacientes = `<ul><li class='list-unstyled'>${i.paciente}</li></ul>`;
+    var filaPacientes = `<p>${i.paciente}</p>`;
     document.getElementById("paName").innerHTML += filaPacientes;
 });
 //Fin Lista de pacientes atendidos en el centro médico
@@ -154,7 +154,7 @@ let newDentalArray = dental.filter(pre => {
 });
 
 newDentalArray.forEach(function(i){
-    var filaIsapre = `<ul><li class="list-unstyled">${i.paciente} - ${i.prevision}</li></ul>`;
+    var filaIsapre = `<p>${i.paciente} - ${i.prevision}</p>`;
     document.getElementById("isaprePa").innerHTML += filaIsapre;
 });
 //Fin Lista de Pacientes con isapre Dental
@@ -168,7 +168,7 @@ let newTraumaArray = traumatologia.filter(pre => {
 });
 
 newTraumaArray.forEach(function(i){
-    var filaFonasa = `<ul><li class="list-unstyled">${i.paciente} - ${i.prevision}</li></ul>`;
+    var filaFonasa = `<p class="list-unstyled">${i.paciente} - ${i.prevision}</p>`;
     document.getElementById("fonasaPa").innerHTML += filaFonasa;
 });
 //Fin Lista de Pacientes con fonasa traumatología
