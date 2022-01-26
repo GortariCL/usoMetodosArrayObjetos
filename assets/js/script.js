@@ -27,7 +27,8 @@ let dental = [
 ]
 //Fin Declaración Arrays
 
-//Inicio Función agregar nuevas horas al array traumatología
+/* 1. Agregar las siguientes horas al arreglo de Traumatología:
+Inicio Función agregar nuevas horas al array traumatología */
 let agregaHoras = () => {
     traumatologia.push(
         { hora: '09:00', especialista: 'RENÉ POBLETE', paciente: 'ANA GELLONA', rut: '13123329-7', prevision: 'ISAPRE' },
@@ -50,8 +51,8 @@ let agregaHoras = () => {
 agregaHoras();
 //Fin Función agregar nuevas horas al array traumatología
 
-
-//Inicio Elimina primer objeto del array
+/* 2. Eliminar el primer y último elemento del arreglo de Radiología.
+Inicio Elimina primer objeto del array */
 const borrarPrimero = () => {
     radiologia.shift();
 }
@@ -65,7 +66,8 @@ const borrarUltimo = () => {
 borrarUltimo();
 //Fin Elimina último objeto del array
 
-//Inicio Tabla Radiología
+/* INICIO TABLAS
+Inicio Tabla Radiología */
 var filaRadiologia = "<tr><th>#</th><th>Hora</th><th>Especialista</th><th>Paciente</th><th>RUT</th><th>Prevision</th></tr>";
 
 for (var i = 0; i < radiologia.length; i++) {
@@ -118,58 +120,55 @@ for (var i = 0; i < dental.length; i++) {
 document.getElementById("tableBodyDt").innerHTML = filaDental;
 document.getElementById("atencionesDt").innerHTML = `Primera atencion: ${dental[0].paciente} - ${dental[0].prevision} | Última atención: ${dental[dental.length - 1].paciente} - ${dental[dental.length - 1].prevision}</p>`;
 //Fin Tabla Dental
+//FIN TABLAS
 
-//Inicio lista consultas médicas Dental
-var listaNewDental = "";
 
-for(i = 0 ; i < dental.length ; i++){
-    listaNewDental +=
-        `<ul>
-        <li class='list-unstyled'>${dental[i].hora} - ${dental[i].especialista} - ${dental[i].paciente} - ${dental[i].rut} - ${dental[i].prevision}</li>
-        </ul>`
-}
-document.getElementById("dentalNew").innerHTML = listaNewDental;
+/* 3. Imprimir en la página HTML, mediante document.write y/o la funciones que estime
+conveniente, la lista de consultas médicas de Dental. Sin embargo, debe hacerlo
+separando por un guión cada dato desplegado y cada fila de información debe estar
+separada por un párrafo.
+Inicio lista consultas médicas Dental */
+dental.forEach(function(i){
+    listaNewDental = `<ul><li class='list-unstyled'>${i.hora} - ${i.especialista} - ${i.paciente} - ${i.rut} - ${i.prevision}</li></ul>`;
+    document.getElementById("dentalNew").innerHTML += listaNewDental;
+});
 //Fin lista consultas médicas Dental
 
-//Inicio Lista de pacientes atendidos en el centro médico
-var filaPacientes = "";
-
+/* 4. Imprimir un listado total de todos los pacientes que se atendieron en el centro
+médico. Para esto, deberá unir todos los nombres de pacientes e imprimir uno por
+cada párrafo.
+Inicio Lista de pacientes atendidos en el centro médico */
 var listaPacientes = radiologia.concat(traumatologia, dental);
-for (var i = 0; i < listaPacientes.length; i++) {
-    filaPacientes +=
-        `<ul>
-        <li class='list-unstyled'>${listaPacientes[i].paciente}</li>
-        </ul>`;
-}
-document.getElementById("paName").innerHTML = filaPacientes;
+
+listaPacientes.forEach(function(i) {
+    var filaPacientes = `<ul><li class='list-unstyled'>${i.paciente}</li></ul>`;
+    document.getElementById("paName").innerHTML += filaPacientes;
+});
 //Fin Lista de pacientes atendidos en el centro médico
 
-//Inicio Lista de Pacientes con isapre Dental
+
+/* 5. Filtrar aquellos pacientes que indican ser de ISAPRE en la lista de consultas médicas de Dental.
+Inicio Lista de Pacientes con isapre Dental */
 let newDentalArray = dental.filter(pre => {
     return pre.prevision == 'ISAPRE';
 });
-var filaIsapre = "";
 
-for (var i = 0; i < newDentalArray.length; i++) {
-    filaIsapre +=
-        `<ul>
-        <li class='list-unstyled'>${newDentalArray[i].paciente} - ${newDentalArray[i].prevision}</li>
-        </ul>`;
-}
-document.getElementById("isaprePa").innerHTML = filaIsapre;
+newDentalArray.forEach(function(i){
+    var filaIsapre = `<ul><li class="list-unstyled">${i.paciente} - ${i.prevision}</li></ul>`;
+    document.getElementById("isaprePa").innerHTML += filaIsapre;
+});
 //Fin Lista de Pacientes con isapre Dental
 
-//Inicio Lista de Pacientes con fonasa traumatología
+
+/* 6. Filtrar aquellos pacientes que indican ser de FONASA en la lista de consultas
+médicas de Traumatología.
+Inicio Lista de Pacientes con fonasa traumatología */
 let newTraumaArray = traumatologia.filter(pre => {
     return pre.prevision == 'FONASA';
 });
-var filaFonasa = "";
 
-for (var i = 0; i < newTraumaArray.length; i++) {
-    filaFonasa +=
-        `<ul>
-        <li class='list-unstyled'>${newTraumaArray[i].paciente} - ${newTraumaArray[i].prevision}</li>
-        </ul>`;
-}
-document.getElementById("fonasaPa").innerHTML = filaFonasa;
+newTraumaArray.forEach(function(i){
+    var filaFonasa = `<ul><li class="list-unstyled">${i.paciente} - ${i.prevision}</li></ul>`;
+    document.getElementById("fonasaPa").innerHTML += filaFonasa;
+});
 //Fin Lista de Pacientes con fonasa traumatología
