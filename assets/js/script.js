@@ -48,25 +48,13 @@ let agregaHoras = () => {
 };
 agregaHoras();
 
-//Elimina primer objeto del array
-const borrarPrimero = () => {
-    radiologia.shift();
-}
-borrarPrimero();
-
-//Elimina último objeto del array
-const borrarUltimo = () => {
-    radiologia.pop();
-}
-borrarUltimo();
-
 //Tabla Radiología
 var filaRadiologia = "<tr><th>#</th><th>Hora</th><th>Especialista</th><th>Paciente</th><th>RUT</th><th>Prevision</th></tr>";
 
 for (var i = 0; i < radiologia.length; i++) {
     filaRadiologia +=
         `<tr>
-        <td>${i+1}</td>
+        <td>${i + 1}</td>
         <td>${radiologia[i].hora}</td>
         <td>${radiologia[i].especialista}</td>
         <td>${radiologia[i].paciente}</td>
@@ -83,7 +71,7 @@ var filaTraumatologia = "<tr><th>#</th><th>Hora</th><th>Especialista</th><th>Pac
 for (var i = 0; i < traumatologia.length; i++) {
     filaTraumatologia +=
         `<tr>
-        <td>${i+1}</td>
+        <td>${i + 1}</td>
         <td>${traumatologia[i].hora}</td>
         <td>${traumatologia[i].especialista}</td>
         <td>${traumatologia[i].paciente}</td>
@@ -100,7 +88,7 @@ var filaDental = "<tr><th>#</th><th>Hora</th><th>Especialista</th><th>Paciente</
 for (var i = 0; i < dental.length; i++) {
     filaDental +=
         `<tr>
-        <td>${i+1}</td>
+        <td>${i + 1}</td>
         <td>${dental[i].hora}</td>
         <td>${dental[i].especialista}</td>
         <td>${dental[i].paciente}</td>
@@ -111,18 +99,30 @@ for (var i = 0; i < dental.length; i++) {
 document.getElementById("tableBodyDt").innerHTML = filaDental;
 document.getElementById("atencionesDt").innerHTML = `Primera atencion: ${dental[0].paciente} - ${dental[0].prevision} | Última atención: ${dental[dental.length - 1].paciente} - ${dental[dental.length - 1].prevision}</p>`;
 
-/* 
 
-
-
-let nombrePacientes = () => {
-    const listaPacientes = radiologia.concat(traumatologia, dental);
-    for (i = 0; i < listaPacientes.length; i++) {
-
-        document.write("<ul>");
-        document.write(`<li class="list-unstyled"> ${listaPacientes[i].paciente} </li>`);
-        document.write("</ul>");        
-    }
+//Elimina primer objeto del array
+const borrarPrimero = () => {
+    radiologia.shift();
 }
+borrarPrimero();
 
- */
+//Elimina último objeto del array
+const borrarUltimo = () => {
+    radiologia.pop();
+}
+borrarUltimo();
+
+
+
+
+var filaPacientes = "";
+
+
+var listaPacientes = radiologia.concat(traumatologia, dental);
+for (var i = 0; i < listaPacientes.length; i++) {
+    filaPacientes +=
+        `<ul>
+        <li class='list-unstyled'>${listaPacientes[i].paciente}</li>
+        </ul>`;
+}
+document.getElementById("paName").innerHTML = filaPacientes;
